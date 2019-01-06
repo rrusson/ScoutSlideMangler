@@ -53,8 +53,9 @@
     <Compile Include="MeritBadgeSlideCreator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScoutParser.cs" />
+    <Compile Include="SlideMangler.cs" />
     <Compile Include="TroopPerson.cs" />
+    <Compile Include="TroopPersonFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
