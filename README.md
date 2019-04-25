@@ -12,3 +12,5 @@ With a troop of almost 100 Boy Scouts, updating PowerPoint slides for every Cour
 5. Take generated slides from "C:\Temp\" and replace slides inside the ZIP (from .PPTX) file
 6. Rename file from .ZIP extention back to .PPTX extention
 
+
+**TODO: automate .PPTX to .ZIP to .PPTX and other dumb steps**
