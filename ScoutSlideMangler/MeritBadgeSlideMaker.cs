@@ -5,50 +5,53 @@ namespace ScoutSlideMangler
 {
 	public class MeritBadgeSlideMaker
 	{
+		private const int _firstSlideToInsert = 23;
 		private readonly DataTable _data = ExcelReader.GetData(@"C:\Temp\COH.xlsx", "Merit Badge");
-
 		private readonly Zipper _zipper = new Zipper(@"C:\Temp\CourtOfHonor.pptx");
-
-
-		public MeritBadgeSlideMaker()
-		{
-			//UNZIP .PPTX to receive new slides
-			_zipper.UnzipFile();
-		}
+		private readonly MeritBadgeSlideCreator _slideMaker = new MeritBadgeSlideCreator(_firstSlideToInsert);
+		private int _counter = 1;           //Skip row 0, which contains headers
 
 		public void ProcessMeritBadges()
 		{
-			var maker = new MeritBadgeSlideCreator(23);
+			bool hasData = true;
 
-			string nextName = GetName(1);
-			int i = 1;
+			//Unzip .PPTX to receive new slides
+			_zipper.UnzipFile();
 
-			for (; nextName != null;)   // Exit when we're all out of rows
+			while (hasData)   // Exit when we're all out of rows
 			{
-				var scout = new TroopPerson
-				{
-					FirstName = _data.Rows[i][1].ToString().Trim(),
-					LastName = _data.Rows[i][0].ToString().Trim()
-				};
-
-				//First row is headers
-				string thisScoutName = GetName(i);
-
-				while (nextName == thisScoutName)
-				{
-					scout.MeritBadges.Add(_data.Rows[i][3].ToString());
-					i++;
-					nextName = GetName(i);
-				}
-
-				Console.WriteLine(scout.LastName + ": " + scout.MeritBadges.Count);
-				maker.SaveSlide(scout);
+				hasData = CreateSlide();
 			}
 
 			//Re-Zip .PPTX with new slides
 			_zipper.ReZipFile();
+
 			Console.WriteLine("-------------ALL SLIDES PROCESSED--------------");
 			Console.ReadKey();
+		}
+
+		private bool CreateSlide()
+		{
+			string thisScoutName = GetName(_counter);
+			string nextName = thisScoutName;
+
+			var scout = new TroopPerson
+			{
+				FirstName = _data.Rows[_counter][1].ToString().Trim(),
+				LastName = _data.Rows[_counter][0].ToString().Trim()
+			};
+
+			while (nextName == thisScoutName)
+			{
+				scout.MeritBadges.Add(_data.Rows[_counter][3].ToString());
+				_counter++;
+				nextName = GetName(_counter);
+			}
+
+			Console.WriteLine(scout.LastName + ": " + scout.MeritBadges.Count);
+			_slideMaker.SaveSlide(scout);
+
+			return nextName != null;
 		}
 
 		private string GetName(int rowNumber)
