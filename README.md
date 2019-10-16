@@ -10,4 +10,5 @@ With a troop of almost 100 Boy Scouts, updating PowerPoint slides for every Cour
 3. Run ScoutSlideMangler
 
 **TODO: Include example .XLSX and .PPTX files so basic demo works on F5 without any tweaks**
+
 **TODO: Expand system to create a general purpose PowerPoint data merge template system**
