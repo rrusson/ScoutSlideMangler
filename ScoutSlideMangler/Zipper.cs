@@ -5,7 +5,7 @@ namespace ScoutSlideMangler
 {
 	public class Zipper
 	{
-		private string outputDirectory = @"C:\Temp\CoH\";
+		private const string outputDirectory = @"C:\Temp\CoH\";
 
 		public string ZipFilePath { get; set; }
 
