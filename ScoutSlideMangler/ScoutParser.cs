@@ -21,7 +21,7 @@ namespace ScoutSlideMangler
 				{
 					FirstName = _data.Rows[i][1].ToString(),
 					LastName = _data.Rows[i][0].ToString()
-					//FullName = _data.Rows[i][0].ToString()
+					//FullName = _data.Rows[i][0].ToString()	// If data combines first and last
 				};
 
 				Console.WriteLine(scout.LastName + ": " + scout.MeritBadges.Count);

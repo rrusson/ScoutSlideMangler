@@ -6,9 +6,9 @@ namespace ScoutSlideMangler
 {
 	public class MeritBadgeSlideMaker
 	{
-		private const int _firstSlideToInsert = 23;
-		private readonly DataTable _data = ExcelReader.GetData(@"C:\Temp\COH.xlsx", "Merit Badges");
-		private readonly Zipper _zipper = new Zipper(@"C:\Temp\CourtOfHonor.pptx");
+		private const int _firstSlideToInsert = 3;
+		private readonly DataTable _data = ExcelReader.GetData(@"..\..\..\COH.xlsx", "Merit Badges");
+		private readonly Zipper _zipper = new Zipper(@"..\..\..\CourtOfHonor.pptx");
 		private readonly MeritBadgeSlideCreator _slideMaker = new MeritBadgeSlideCreator(_firstSlideToInsert);
 		private int _counter = 1;           //Skip row 0, which contains headers
 
@@ -76,7 +76,7 @@ namespace ScoutSlideMangler
 			}
 
 			DataRow data = _data.Rows[rowNumber];
-			//return data[1].ToString() + Environment.NewLine + data[0].ToString();
+
 			return $"{data[1]} {data[0]}";
 		}
 	}

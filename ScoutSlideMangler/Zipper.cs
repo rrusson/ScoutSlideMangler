@@ -41,7 +41,7 @@ namespace ScoutSlideMangler
 		/// </summary>
 		public void ReZipFile()
 		{
-			string pptxFile = @"C:\Temp\CourtOfHonor-DONE.pptx";
+			string pptxFile = @"..\..\..\CourtOfHonor-DONE.pptx";
 
 			if (System.IO.File.Exists(pptxFile))
 			{
